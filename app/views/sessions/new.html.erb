@@ -1,0 +1,24 @@
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <% if (!current_user.nil?)  %>
+        <h2> Hi <%= current_user.name %>!</h2>
+      <% end %>
+    <%= form_for(:user,url: '/login',method: 'post') do |f| %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email ,class:"form-control"%><br>
+
+    <%= f.label :password %>
+    <%= f.password_field :password,class:"form-control" %>
+    <br><br>
+
+    <%= link_to 'Show Posts' ,posts_path %>
+
+    <br><br>
+    <p>
+      <%= f.submit 'Log In',class: "btn btn-primary" %>
+      Don't have an account? <%= link_to 'Sign up',signup_path %> now
+    </p>
+  <% end %>
+  </div>
+</div>

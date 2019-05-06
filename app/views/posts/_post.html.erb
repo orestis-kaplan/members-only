@@ -1,0 +1,5 @@
+<% if post.user_id == current_user.id %>
+  <strong>Username: </strong><i><%= current_user.name %></i><br>
+  <strong>Title: </strong><i><%= post.title %></i><br>
+  <strong>Body: </strong><i><%= post.body %></i><br><br>
+ <% end %>
