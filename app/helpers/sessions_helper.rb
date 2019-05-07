@@ -1,11 +1,12 @@
-module SessionsHelper
+# frozen_string_literal: true
 
+module SessionsHelper
   def login(user)
     session[:id] = user.id
     flash[:success] = "#{user.name} logged in"
   end
 
-  def logout(user)
+  def logout(_user)
     session.delete :id
     user = nil
   end
@@ -24,7 +25,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: session[:id])
     elsif cookies.signed[:id]
       user = User.find_by(id: cookies.signed[:id])
-      if user && user.authenticate(cookies[:remember_token])
+      if user&.authenticate(cookies[:remember_token])
         login(user)
         @current_user = user
       else
@@ -33,9 +34,8 @@ module SessionsHelper
     end
   end
 
-  def forget(user)
+  def forget(_user)
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
-
 end
