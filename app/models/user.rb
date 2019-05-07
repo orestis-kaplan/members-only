@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_create :create_remember_token
   has_secure_password
-  has_many :posts , dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   private
 
@@ -11,10 +11,10 @@ class User < ApplicationRecord
 
   def generate_token
     token = Digest::SHA1.hexdigest(SecureRandom.urlsafe_base64)
-    return token
+    token
   end
 
   def forget
-     update_attribute(:remember_token, nil)
+    update_attribute(:remember_token, nil)
   end
 end

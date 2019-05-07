@@ -1,3 +1,4 @@
+# class UsersController
 class UsersController < ApplicationController
   include SessionsHelper
 
@@ -9,15 +10,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      flash[:success] = "User created successfully"
+      flash[:success] = 'User created successfully'
       redirect_to posts_path
     else
-      flash[:danger] = "Could not save client"
+      flash[:danger] = 'Could not save client'
       render 'new'
     end
   end
 
   def user_params
-    params.require(:user).permit(:name,:email,:password,:password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
