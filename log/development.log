@@ -9863,3 +9863,105 @@ Processing by UsersController#create as HTML
 Completed 200 OK in 763ms (Views: 658.9ms | ActiveRecord: 2.7ms)
 
 
+Started GET "/signup" for ::1 at 2019-05-09 16:04:12 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (55.8ms)
+  Rendered users/new.html.erb within layouts/application (119.1ms)
+Completed 500 Internal Server Error in 349ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    1: <% if object.errors.any? %>
+    2:   <div id="error_explanation">
+    3:     <div class="alert alert-danger">
+    4:       The form contains <%= pluralize(object.errors.count, "error") %>.
+  
+app/views/shared/_error_messages.html.erb:1:in `_app_views_shared__error_messages_html_erb__450434161_130908680'
+app/views/users/new.html.erb:6:in `block in _app_views_users_new_html_erb__909408340_130986520'
+app/views/users/new.html.erb:5:in `_app_views_users_new_html_erb__909408340_130986520'
+Started GET "/signup" for ::1 at 2019-05-09 16:04:50 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/new.html.erb within layouts/application (60.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+Completed 200 OK in 16791ms (Views: 16729.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/signup" for ::1 at 2019-05-09 16:05:24 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"l3JXZbEfBukq58RBaFskrRTEGBt383i7RkOfLpo3vJelJS9EXbH7K1fNsFNtlkIoG+qxLk81O4aOii5aY4oAZw==", "user"=>{"name"=>"asa", "email"=>"as@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "as@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:11
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (1.2ms)
+  Rendered users/new.html.erb within layouts/application (75.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:26
+Completed 200 OK in 823ms (Views: 722.6ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/signup" for ::1 at 2019-05-09 16:05:39 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5XnHDKkaGWriztft0U7ugPYenapGkukvoX6PGnSklhrXLr8tRbTkqJ/ko//Ug4gF+TA0n35UqhJptz5ujRkq6g==", "user"=>{"name"=>"asa", "email"=>"as@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "as@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11
+  [1m[36mUser Create (7.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at", "remember_token") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "asa"], ["email", "as@mail.com"], ["password_digest", "$2a$10$t6g4K92YkIfqNVe.4p/LsO13YqpYwimnN1fXj/CF.yRVc2KJSAh26"], ["created_at", "2019-05-09 13:05:39.866967"], ["updated_at", "2019-05-09 13:05:39.866967"], ["remember_token", "fca53de1d3b60237cbe597b447835d8142538df5"]]
+  ↳ app/controllers/users_controller.rb:11
+  [1m[35m (16.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:11
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 134ms (ActiveRecord: 25.1ms)
+
+
+Started GET "/posts" for ::1 at 2019-05-09 16:05:39 +0300
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:24
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:5
+  Rendered collection of posts/_post.html.erb [7 times] (0.9ms)
+  Rendered posts/index.html.erb within layouts/application (98.7ms)
+Completed 200 OK in 732ms (Views: 652.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/signup" for ::1 at 2019-05-09 16:05:44 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered users/new.html.erb within layouts/application (81.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:24
+Completed 200 OK in 791ms (Views: 723.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/signup" for ::1 at 2019-05-09 16:07:17 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.8ms)
+  Rendered users/new.html.erb within layouts/application (76.9ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:24
+Completed 200 OK in 790ms (Views: 715.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/signup" for ::1 at 2019-05-09 16:07:27 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/new.html.erb within layouts/application (70.9ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:24
+Completed 200 OK in 732ms (Views: 661.8ms | ActiveRecord: 0.4ms)
+
+
