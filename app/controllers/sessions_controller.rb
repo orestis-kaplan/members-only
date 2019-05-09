@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       redirect_to posts_path
     else
       flash[:danger] = 'Wrong credentials'
-      redirect_to root_url
+      render 'new'
     end
   end
 

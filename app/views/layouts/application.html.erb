@@ -14,5 +14,15 @@
  <div class="alert alert-<%= message_type %>"><%= message %></div>
      <% end %>
     <%= yield %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <% if (!current_user.nil?) %>
+          <%= link_to 'Log out',logout_path,method: :delete %><br>
+            <% if !request.original_url.include?('all') %>
+              <%= link_to 'Show all Posts',all_path %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

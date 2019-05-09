@@ -3,6 +3,7 @@
     <h2>Sign up Form</h2>
 
     <%= form_for(:user,url: '/signup',method: 'post') do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
 
       <%= f.label :name %>
       <%= f.text_field :name,class: "form-control" %>
@@ -17,7 +18,7 @@
       <%= f.text_field :password_confirmation,class: "form-control" %>
       <br>
       <%= f.submit 'Sign up',class: "btn btn-primary" %>
-      <p>Already have an account?</p><%= link_to 'Log in',login_path %> now!
+      <p>Already have an account? <%= link_to 'Log in',login_path %> now!</p>
     <% end %>
   </div>
 </div>

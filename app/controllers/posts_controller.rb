@@ -20,6 +20,13 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+# I created this action and the corresponding route because i couldn't
+# create a partial and render it properly. Please give me your thoughts about
+# that
+  def all_posts
+    @posts = Post.all
+  end
+
   def logged_in_user
     unless logged_in?
       flash[:danger] = 'Please log in first'
