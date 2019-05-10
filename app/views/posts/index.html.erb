@@ -4,15 +4,8 @@
       <h1>Your Posts</h1>
       <%= render @posts %>
     <% else %>
-    <h1>All Posts</h1>
-      <% @posts.each do |post| %>
-        <ul class="posts-style">
-          <li>Title: <%= post.title %></li>
-          <li>Body: <%= post.body %></li>
-          <li>Posted by: <b>(authenticated users only)</b></li>
-          <br><br>
-        </ul>
-      <% end %>
+      <h1>All Posts</h1>
+      <%= render partial: 'unauthenticated', collection: @posts, as: :post %>
     <% end %>
     <%= link_to 'Create Post',new_post_path %><br>
   </div>

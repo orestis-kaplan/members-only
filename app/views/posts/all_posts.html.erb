@@ -1,14 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h1>All Posts</h1>
-      <% @posts.each do |post| %>
-        <ul class="posts-style">
-          <li>Title: <%= post.title %></li>
-          <li>Body: <%= post.body %></li>
-          <li>Posted by: <b><%= post.user.name %></b></li>
-          <br><br>
-        </ul>
-       <% end %>
+    <%= render partial: 'authenticated', collection: @posts, as: :post %>
        <%= link_to 'Go back',posts_path %>
   </div>
 </div>

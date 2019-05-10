@@ -21,6 +21,8 @@
             <% if !request.original_url.include?('all') %>
               <%= link_to 'Show all Posts',all_path %>
             <% end %>
+        <% elsif !request.original_url.include?('login') && !request.original_url.include?('signup') %>
+            <%= link_to 'Log In',login_path %>
         <% end %>
       </div>
     </div>
