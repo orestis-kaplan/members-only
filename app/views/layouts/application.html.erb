@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MembersOnly</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% flash.each do |message_type, message| %>
+ <div class="alert alert-<%= message_type %>"><%= message %></div>
+     <% end %>
+    <%= yield %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <% if (!current_user.nil?) %>
+          <%= link_to 'Log out',logout_path,method: :delete %><br>
+        <% elsif !request.original_url.include?('login') && !request.original_url.include?('signup') %>
+            <%= link_to 'Log In',login_path %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
